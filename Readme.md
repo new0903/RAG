@@ -1,62 +1,47 @@
 
 
-
 ### Инструкция по запуску
 
+### Пакеты для установки:
 
-### Пакеты к установке:
+text
+pip install PyMuPDF chromadb streamlit
+Дополнительно можно установить sentence-transformers:
 
+text
+pip install sentence-transformers
+Итог:
 
-pip install PyMuPDF
-pip install chromadb
-pip import streamlit
-
-дополнительно можно sentence-transformers
-pip import sentence-transformers
-
-
-### итог 
-pip install PyMuPDF chromadb streamlit sentence-transfor
-
-
+text
+pip install PyMuPDF chromadb streamlit sentence-transformers
 ### Настройка поиска по тексту:
+Перед первым запуском сложите все PDF-документы в папку docs.
 
-Перед первым запуском все пдф документы складываем в папку docs
+Если позже вы добавите новые PDF-файлы, удалите всё из папки chroma_db.
 
-После если вы добавите ещё файлы пдф тогда удалите всё из папки chroma_db
+Если не хотите использовать Chroma, используйте TextVectorizer, VectorDB и PDFReader.
 
-Если не хотите использовать chroma тогда Используйте TextVectorizer, VectorDB и PDFReader
+TextVectorizer — преобразует текст в векторы.
 
-TextVectorizer - преобразует текст в векторы 
+VectorDB — создает SQLite базу данных, сохраняет туда текст с векторами и осуществляет поиск.
 
-VectorDB - создает sqlite бд и сохраняет туда текст с векторами, а так же осуществляет поиск по векторам.
+Короче, здесь надо будет написать пару строк кода, чтобы соединить всё это.
 
-короче здесь надо будет написать пару строк кода что бы соеденить всё это.
+### Настройка OpenAI:
+В sseapi вставить свои model и url.
 
+В функции request, в запросе response = await session.post(...) настройте:
 
-### Настройка OpenAI
+python
+headers={
+    "Content-Type": "application/json",
+    # "Authorization": "" // добавить свой токен
+}
+Короче говоря, настройте заголовки и тело запроса так, как вам надо.
 
-в sseapi вставить свои model и url
+Для того чтобы всё работало как надо, советую установить и зарегистрироваться в Ollama. Их API точно будет работать, у них можно использовать локальные и облачные модели и т.д.
 
-в функции request в запрос response=await session.post(
-                    url,
-                    json=request_body,
-                    headers={
-                        "Content-Type": "application/json"#,"Authorize":""//добавить свой токен 
-                    }
-                ) 
-
-короче говоря настройте заголовки и тело запрос так как вам надо.
-
-для того что бы все работало как надо советую установить и зарегестрироваться в Ollama. Их api точно будет работать,
-у них можно использовать локальные и облачные модели и т.д. 
-
-
-
-После того как вы все настроите  
-
-вот команда для запуска
-
+После того как вы всё настроите, вот команда для запуска:
 ### streamlit run PythonAppSearchText.py
 
 

@@ -32,7 +32,7 @@ class SSE_Bot:
         self.model_name=model
 
 
-        #streamlit run PythonAppSearchText.py
+     
     
     def procces_message_line(
         self,
